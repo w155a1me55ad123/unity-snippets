@@ -27,6 +27,8 @@ class App extends Component {
       });
   }
 
+
+
   render() {
     return (
 
@@ -35,7 +37,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to Unity Snippets</h1>
         </header>
         <div>
-          <Grid container spacing={36}>
+          <Grid container spacing={32}>
                   <Grid item xs={3}>
                     <Button variant="contained" color="primary" onClick={this.fetchMarkdown.bind(this)} >Click me</Button>
                     <CategoriesList/>
