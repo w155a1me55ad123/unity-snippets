@@ -15,21 +15,20 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      dummyData: ""
+      Data: []
     }
   }
-  fetchMarkdown() {
-    fetch("/api/hello").then((response) => response.json())
+  fetchSnippets(name) {
+    fetch("/api/" + name + "/all").then((response) => response.json())
       .then((myJson) => {
         this.setState({
-          dummyData: myJson.data
+          Data: myJson.data
         })
       });
   }
 
-
-
   render() {
+    console.log(this.state.Data);
     return (
 
       <div className="App">
@@ -39,15 +38,17 @@ class App extends Component {
         <div>
           <Grid container spacing={32}>
                   <Grid item xs={3}>
-                    <Button variant="contained" color="primary" onClick={this.fetchMarkdown.bind(this)} >Click me</Button>
-                    <CategoriesList/>
+                    <CategoriesList fetchSnippets={this.fetchSnippets.bind(this)}/>
                 </Grid>
                   <Grid item xs={8}>
-                    <Card>
-                      <CardContent>
-                        <ReactMarkdown className="markdown-body" source={this.state.dummyData} />
-                      </CardContent>
-                    </Card>
+                    {this.state.Data.map((snippet, key) => (
+
+                        <Card key={key}>
+                          <CardContent>
+                            <ReactMarkdown className="markdown-body" source={snippet.contents} />
+                          </CardContent>
+                        </Card>
+                       ))}
                   </Grid>
           </Grid>
         </div>

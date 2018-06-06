@@ -34,7 +34,9 @@ app.get("/api/:dir/all", (req, res) => {
       files.forEach((item, index) => {
         data.push(item);
       });
-      res.send(data)
+      res.json({
+        data
+      })
     })
     .catch(error => {
       console.log(error);

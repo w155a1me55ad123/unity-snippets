@@ -26,19 +26,14 @@ class CategoriesList extends React.Component {
       });
   }
 
-  fetchSnippets(name) {
-    fetch("/api/" + name + "/all").then((response) => response.json())
-      .then((myJson) => {
-        console.log(myJson)
-      });
-  }
+
   render() {
     return (
       <div >
         <List>
         {this.state.dirs.map((dir, key) => (
           <ListItem key={key} button>
-            <ListItemText  onClick={() => this.fetchSnippets(dir)} inset primary={dir} />
+            <ListItemText  onClick={() => this.props.fetchSnippets(dir)} inset primary={dir} />
           </ListItem>
            ))}
         </List>
