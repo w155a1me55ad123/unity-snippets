@@ -2,7 +2,6 @@ const express = require('express'),
   path = require("path"),
   fs = require("fs"),
   app = express(),
-  port = process.env.PORT || 5000,
   ReadSnippets = require('./helpers/ReadSnippets');
 
 //if (process.env.NODE && ~process.env.NODE.indexOf("heroku"))
@@ -53,6 +52,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log('Listening on port ' + port)
 });
