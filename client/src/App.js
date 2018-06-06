@@ -2,8 +2,14 @@ import React, {
   Component
 } from 'react';
 import './App.css';
-const ReactMarkdown = require('react-markdown')
-
+import ReactMarkdown from 'react-markdown';
+import {
+  Button,
+  Card,
+  CardContent,
+  Grid
+} from '@material-ui/core';
+import CategoriesList from "./Components/CategoriesList"
 class App extends Component {
 
   constructor(props) {
@@ -20,18 +26,33 @@ class App extends Component {
         })
       });
   }
-  render() {
 
+  render() {
     return (
+
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to Unity Snippets</h1>
-          <button onClick={this.fetchMarkdown.bind(this)} > Click me</button>
         </header>
-        <ReactMarkdown className="markdown-body" source={this.state.dummyData} />
+        <div>
+          <Grid container spacing={36}>
+                  <Grid item xs={3}>
+                    <Button variant="contained" color="primary" onClick={this.fetchMarkdown.bind(this)} >Click me</Button>
+                    <CategoriesList/>
+                </Grid>
+                  <Grid item xs={8}>
+                    <Card>
+                      <CardContent>
+                        <ReactMarkdown className="markdown-body" source={this.state.dummyData} />
+                      </CardContent>
+                    </Card>
+                  </Grid>
+          </Grid>
+        </div>
       </div>
     );
   }
 }
+
 
 export default App;
