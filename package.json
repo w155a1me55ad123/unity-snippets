@@ -1,7 +1,7 @@
 {
-  "name": "react-express-heroku",
+  "name": "unity-snippets",
   "version": "1.0.0",
-  "description": "Boilerplate code that runs create-react-app with express backend and ready to be deplyed on herou ",
+  "description": "A curated list of useful unity snippets",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,5 +21,4 @@
   "devDependencies": {
     "concurrently": "^3.5.1"
   }
-
 }
