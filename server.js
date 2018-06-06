@@ -5,10 +5,8 @@ const express = require('express'),
   port = process.env.PORT || 5000,
   ReadSnippets = require('./helpers/ReadSnippets');
 
-
-//Disable this condition to produce prod version localy
-if (process.env.NODE && ~process.env.NODE.indexOf("heroku"))
-  app.use(express.static(path.join(__dirname, 'client/build')));
+//if (process.env.NODE && ~process.env.NODE.indexOf("heroku"))
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get("/api/:dir/all", (req, res) => {
   var data = [];
