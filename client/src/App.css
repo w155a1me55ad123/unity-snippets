@@ -1,3 +1,9 @@
 .App-title {
   text-align: center;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.Snippet {
+  min-width: 475px;
+  margin-bottom: 2em;
 }

@@ -18,19 +18,32 @@ class App extends Component {
       Data: []
     }
   }
+
+  componentWillMount() {
+    fetch("/readmeFirst").then((response) => response.json())
+      .then((myJson) => {
+        console.log(myJson.data)
+
+        this.setState({
+          Data: [myJson.data]
+        })
+      });
+  }
+
+
   fetchSnippets(name) {
     fetch("/api/" + name + "/all").then((response) => response.json())
       .then((myJson) => {
         this.setState({
           Data: myJson.data
-        })
+        }, () => {})
       });
   }
 
-  render() {
-    console.log(this.state.Data);
-    return (
 
+
+  render() {
+    return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to Unity Snippets</h1>
@@ -42,8 +55,7 @@ class App extends Component {
                 </Grid>
                   <Grid item xs={8}>
                     {this.state.Data.map((snippet, key) => (
-
-                        <Card key={key}>
+                        <Card className="Snippet" key={key}>
                           <CardContent>
                             <ReactMarkdown className="markdown-body" source={snippet.contents} />
                           </CardContent>

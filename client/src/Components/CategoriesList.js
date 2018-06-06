@@ -32,8 +32,8 @@ class CategoriesList extends React.Component {
       <div >
         <List>
         {this.state.dirs.map((dir, key) => (
-          <ListItem key={key} button>
-            <ListItemText  onClick={() => this.props.fetchSnippets(dir)} inset primary={dir} />
+          <ListItem onClick={() => this.props.fetchSnippets(dir)} key={key} button>
+            <ListItemText  inset primary={dir}  />
           </ListItem>
            ))}
         </List>
