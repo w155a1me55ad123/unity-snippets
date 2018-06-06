@@ -1,0 +1,25 @@
+{
+  "name": "react-express-heroku",
+  "version": "1.0.0",
+  "description": "Boilerplate code that runs create-react-app with express backend and ready to be deplyed on herou ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd client &&  npm start",
+    "clientbuild": "cd client &&  npm run build",
+    "server": "nodemon server.js",
+    "prodserver": "node server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "prod": "npm run clientbuild && npm run prodserver",
+    "start": "npm run prod"
+  },
+  "author": "Amir Braham",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1"
+  }
+
+}
