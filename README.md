@@ -2,13 +2,13 @@
 A curated collection of useful Unity snippets.
 # Unity Snippets
 
-A curated collection of useful Unity snippets you can understand in 30 seconds or less.
+A curated collection of useful Unity snippets you can drag'n drop .
 Inspired by [30 seconds of code](https://github.com/Chalarangelo/30-seconds-of-code).
 
 ## View online
 
-https://atomiks.github.io/30-seconds-of-css/
+https://unitysnippets.herokuapp.com/
 
 ## Contributing
 
-See GettingStarted.md for the snippet template.
+See /snippets/CONTRIBUTING.md for the snippet template.
