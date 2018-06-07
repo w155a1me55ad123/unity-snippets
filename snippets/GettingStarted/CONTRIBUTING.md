@@ -10,11 +10,6 @@ Brief description
 
 #### Demo (optional)
 
-<!-- You must link a sreenshot or a gif -->
+You must link a screenshot or a gif
 
 #### Explanation
-
-<!-- Use a step-by-step (ordered) list if possible. Keep it concise. -->
-
-
-<span class="snippet__support-note">✅ No caveats.</span>
