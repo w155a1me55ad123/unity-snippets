@@ -2,14 +2,24 @@ import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Collapse from '@material-ui/core/Collapse';
 
 class CategoriesList extends React.Component {
   constructor() {
     super()
     this.state = {
-      dirs: []
+      dirs: [],
+      open: true
     }
   }
+
+  handleClick = () => {
+    this.setState({
+      open: !this.state.open
+    });
+  };
   componentWillMount() {
     fetch("/Directories", {
         headers: {
@@ -30,6 +40,11 @@ class CategoriesList extends React.Component {
   render() {
     return (
       <div >
+        <ListItem button onClick={this.handleClick}>
+           <ListItemText inset primary="Categories" />
+           {this.state.open ? <ExpandLess /> : <ExpandMore />}
+         </ListItem>
+         <Collapse in={this.state.open} timeout="auto" unmountOnExit>
         <List>
         {this.state.dirs.map((dir, key) => (
           <ListItem onClick={() => this.props.fetchSnippets(dir)} key={key} button>
@@ -37,6 +52,7 @@ class CategoriesList extends React.Component {
           </ListItem>
            ))}
         </List>
+         </Collapse>
       </div>
     );
   }

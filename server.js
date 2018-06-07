@@ -11,7 +11,6 @@ app.get("/api/:dir/all", (req, res) => {
   var data = [];
   ReadSnippets.readFiles("snippets" + '/' + req.params.dir)
     .then(files => {
-      console.log("loaded ", files.length);
       files.forEach((item, index) => {
         data.push(item);
       });

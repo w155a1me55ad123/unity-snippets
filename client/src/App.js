@@ -50,10 +50,10 @@ class App extends Component {
         </header>
         <div>
           <Grid container spacing={32}>
-                  <Grid item xs={3}>
+                  <Grid item xs={12} sm={12} md={3}  lg={3}>
                     <CategoriesList fetchSnippets={this.fetchSnippets.bind(this)}/>
-                </Grid>
-                  <Grid item xs={8}>
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={9} lg={8} >
                     {this.state.Data.map((snippet, key) => (
                         <Card className="Snippet" key={key}>
                           <CardContent>
