@@ -1,4 +1,4 @@
-### Snippet name
+## Snippet name
 
 Brief description
 
