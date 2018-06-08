@@ -8,6 +8,7 @@
   <title>Unity Snippets</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css">
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -15,6 +16,111 @@
       You need to enable JavaScript to run this app.
     </noscript>
   <div id="root"></div>
+
+  <button style="display:none" class="back-to-top-button is-visible" aria-label="back to top"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up" style="letter-spacing: -0.3px;"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg> </button>
+
 </body>
+
+<script type="text/javascript">
+  $(window).scroll(function() {
+
+    if ($(this).scrollTop() > 200) {
+      $('.back-to-top-button').show()
+      $('.back-to-top-button').fadeIn();
+
+    } else {
+      $('.back-to-top-button').fadeOut();
+
+    }
+  });
+  $(".back-to-top-button").click(function() {
+    $("html, body").animate({
+      scrollTop: 0
+    }, "slow");
+    return false;
+  });
+</script>
+
+<style media="screen">
+  button {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  button {
+    overflow: visible;
+  }
+
+  button {
+    text-transform: none;
+  }
+
+  button {
+    -webkit-appearance: button;
+  }
+
+  button::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+
+  button:-moz-focusring {
+    outline: 1px dotted ButtonText;
+  }
+
+  *,
+  :after,
+  :before {
+    box-sizing: inherit;
+  }
+
+  .back-to-top-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+    background: #fff;
+    width: 3.5rem;
+    height: 4rem;
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    border-radius: 50%;
+    user-select: none;
+    box-shadow: 0 .4rem .8rem -.1rem rgba(0, 32, 128, .15);
+    transition: all .2s ease-out;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
+    border: 1px solid rgba(0, 32, 128, .1);
+    outline: 0;
+    color: inherit;
+  }
+
+  .back-to-top-button:focus,
+  .back-to-top-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 .8rem 1.6rem -.2rem rgba(0, 32, 128, .15);
+    color: #35a8ff;
+  }
+
+  .back-to-top-button:focus {
+    box-shadow: 0 .8rem 1.6rem -.2rem rgba(0, 32, 128, .15), 0 0 2px 2px #35a8ff;
+    outline-style: none;
+  }
+
+  .back-to-top-button.is-visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .back-to-top-button .feather {
+    width: 2rem;
+    height: 2rem;
+  }
+</style>
 
 </html>
