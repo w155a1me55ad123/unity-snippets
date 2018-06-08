@@ -12,3 +12,4 @@ https://unitysnippets.herokuapp.com/
 ## Contributing
 
 See /snippets/CONTRIBUTING.md for the snippet template.
+PS : it may take up to 10 mins to see your snippets live, since heroku rebuilds the whole app , any suggestions to speed it up are welcome  !
