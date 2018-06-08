@@ -11,6 +11,7 @@ class CategoriesList extends React.Component {
     super()
     this.state = {
       dirs: [],
+      numberOfSnippets: [],
       open: true
     }
   }
@@ -31,11 +32,14 @@ class CategoriesList extends React.Component {
       })
       .then((myJson) => {
         this.setState({
-          dirs: myJson.dirs
+          dirs: myJson.dirs,
+          numberOfSnippets: myJson.numberOfSnippets
         })
       });
   }
-
+  fetchSnippetsNumber(key) {
+    return this.state.numberOfSnippets[key];
+  }
 
   render() {
     return (
@@ -49,6 +53,7 @@ class CategoriesList extends React.Component {
         {this.state.dirs.map((dir, key) => (
           <ListItem onClick={() => this.props.fetchSnippets(dir)} key={key} button>
             <ListItemText  inset primary={dir}  />
+            <p className="numberOfSnippets">{this.fetchSnippetsNumber(key)}</p>
           </ListItem>
            ))}
         </List>

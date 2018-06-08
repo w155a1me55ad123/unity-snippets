@@ -7,3 +7,14 @@
   min-width: 475px;
   margin-bottom: 2em;
 }
+
+.numberOfSnippets  {
+  font-size: 1em;
+  text-align: center;
+  color:white;
+  background-color: #EF5350;
+  padding: 0.5em;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+}

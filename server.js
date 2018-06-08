@@ -39,13 +39,23 @@ app.get("/readmeFirst", (req, res) => {
 
 app.get("/Directories", (req, res) => {
   res.json({
-    "dirs": getDirectories("snippets")
+    "dirs": getDirectories("snippets"),
+    "numberOfSnippets": getSnippetsNumber()
   })
+
 })
 getDirectories = (path) => {
   return fs.readdirSync(path).filter((file) => {
     return fs.statSync(path + '/' + file).isDirectory();
   });
+}
+
+getSnippetsNumber = () => {
+  let n = []
+  for (var i = 0; i < getDirectories("snippets").length; i++) {
+    n.push(fs.readdirSync("snippets/" + getDirectories("snippets")[i]).length)
+  }
+  return n;
 }
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
