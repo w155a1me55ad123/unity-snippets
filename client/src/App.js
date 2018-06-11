@@ -4,7 +4,6 @@ import React, {
 import './App.css';
 import ReactMarkdown from 'react-markdown';
 import {
-  Button,
   Card,
   CardContent,
   Grid
