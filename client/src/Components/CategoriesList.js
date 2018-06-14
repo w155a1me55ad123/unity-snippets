@@ -12,7 +12,8 @@ class CategoriesList extends React.Component {
     this.state = {
       dirs: [],
       numberOfSnippets: [],
-      open: true
+      open: true,
+      loaded: false
     }
   }
 
@@ -22,6 +23,15 @@ class CategoriesList extends React.Component {
     });
   };
   componentWillMount() {
+    this.setState({
+      loaded: false
+    })
+
+  }
+  componentDidMount() {
+    this.setState({
+      loaded: true
+    })
     fetch("/Directories", {
         headers: {
           'Content-Type': 'application/json',
@@ -42,26 +52,41 @@ class CategoriesList extends React.Component {
   }
 
   render() {
-    return (
-      <div >
-        <ListItem button onClick={this.handleClick}>
-           <ListItemText inset primary="Categories" />
-           {this.state.open ? <ExpandLess /> : <ExpandMore />}
-         </ListItem>
-         <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-        <List>
-        {this.state.dirs.map((dir, key) => (
-          <ListItem onClick={() => this.props.fetchSnippets(dir)} key={key} button>
-            <ListItemText  inset primary={dir}  />
-            <p className="numberOfSnippets">{this.fetchSnippetsNumber(key)}</p>
-          </ListItem>
-           ))}
-        </List>
-         </Collapse>
+    console.log(this.state.loaded)
+    let main = <div></div>;
+    if (!this.state.loaded) {
+      main = <div>Loading..</div>;
+    } else {
+      main =
+        (
+          <div>
+            <ListItem button onClick={this.handleClick}>
+               <ListItemText inset primary="Categories" />
+               {this.state.open ? <ExpandLess /> : <ExpandMore />}
+             </ListItem>
+             <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+            <List>
+              {this.state.dirs.map((dir, key) => (
+                <ListItem onClick={() => this.props.fetchSnippets(dir)} key={key} button>
+                  <ListItemText  inset primary={dir}  />
+                  <p className="numberOfSnippets">{this.fetchSnippetsNumber(key)}</p>
+                </ListItem>
+                 ))}
+            </List>
+             </Collapse>
       </div>
-    );
+        );
+
+
+    }
+    return (
+      <div>
+{main}
+</div>
+    )
+
+
   }
 }
-
 
 export default CategoriesList;

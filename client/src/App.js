@@ -33,6 +33,7 @@ class App extends Component {
 
 
   fetchSnippets(name) {
+    console.log(name)
     fetch("/api/" + name + "/all").then((response) => response.json())
       .then((myJson) => {
         this.setState({
@@ -42,26 +43,21 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      loaded: true
-    })
+
     console.log("Loaded")
   }
 
   render() {
-    let main;
-    if (!this.state.loaded) {
-      main = <div className="loader"></div>
-    } else {
-      main = (<div className="App">
+
+    return (<div className="App">
     <header className="App-header">
       <h1 className="App-title">Welcome to Unity Snippets</h1>
     </header>
     <div>
       <Grid container spacing={32}>
-              <Grid item xs={12} sm={12} md={3}  lg={3}>
-                <CategoriesList fetchSnippets={this.fetchSnippets.bind(this)}/>
-              </Grid>
+        <Grid item xs={12} sm={12} md={3}  lg={3}>
+            <CategoriesList fetchSnippets={this.fetchSnippets.bind(this)}/>
+        </Grid>
               <Grid item xs={12} sm={12} md={9} lg={8} >
                 {this.state.Data.map((snippet, key) => (
                     <Card className="Snippet" key={key}>
@@ -74,18 +70,10 @@ class App extends Component {
       </Grid>
     </div>
   </div>)
-    }
-
-    return (
-      <div>
-{main}
-      </div>
-
-
-    );
   }
-
 }
+
+
 
 
 export default App;
