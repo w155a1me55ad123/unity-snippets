@@ -5,7 +5,6 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import CodeIcon from "@material-ui/icons/Code";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ReportIcon from "@material-ui/icons/ReportProblem";
-import axios from "axios";
 
 class SnippetActions extends Component {
   state = {
