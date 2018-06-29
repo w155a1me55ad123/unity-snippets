@@ -61,7 +61,6 @@ app.get("/favs/:snippet/get", (req, res) => {
   });
 });
 app.get("/favs/:snippet/increment", (req, res) => {
-  console.log(req.params.snippet);
   storage.getItem(req.params.snippet).then(e => {
     storage.setItem(req.params.snippet, e + 1).then(() => {
       storage

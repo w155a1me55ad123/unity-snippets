@@ -7,10 +7,8 @@ import "./App.css";
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log("Loading Content");
     this.state = {
       category: "GettingStarted",
-      loaded: false,
       Data: []
     };
   }
@@ -41,9 +39,7 @@ class App extends Component {
       });
   }
 
-  componentDidMount() {
-    console.log("Loaded");
-  }
+  componentDidMount() {}
 
   render() {
     return (
