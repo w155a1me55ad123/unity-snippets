@@ -2,10 +2,8 @@ const express = require("express"),
   path = require("path"),
   fs = require("fs"),
   app = express(),
-  ReadSnippets = require("./helpers/ReadSnippets"),
-  storage = require("node-persist");
+  ReadSnippets = require("./helpers/ReadSnippets");
 
-storage.init();
 //if (process.env.NODE && ~process.env.NODE.indexOf("heroku"))
 app.use(express.static(path.join(__dirname, "client/build")));
 
@@ -45,33 +43,7 @@ app.get("/Directories", (req, res) => {
     numberOfSnippets: getSnippetsNumber()
   });
 });
-app.get("/favs/:snippet/get", (req, res) => {
-  storage.getItem(req.params.snippet).then(e => {
-    if (typeof e == "undefined") {
-      storage.setItem(req.params.snippet, 0).then(() => {
-        res.json({
-          favs: 0
-        });
-      });
-    } else {
-      res.json({
-        favs: e
-      });
-    }
-  });
-});
-app.get("/favs/:snippet/increment", (req, res) => {
-  storage.getItem(req.params.snippet).then(e => {
-    storage.setItem(req.params.snippet, e + 1).then(() => {
-      storage
-        .getItem(req.params.snippet)
-        .then(e => console.log("new favs : " + e));
-      res.json({
-        completed: true
-      });
-    });
-  });
-});
+
 getDirectories = path => {
   return fs.readdirSync(path).filter(file => {
     return fs.statSync(path + "/" + file).isDirectory();
