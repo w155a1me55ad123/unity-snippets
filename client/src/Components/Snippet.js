@@ -1,13 +1,30 @@
 import React, { Component } from "react";
-import { Card, CardContent, Grid } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  Grid,
+  Button,
+  Popover,
+  Typography
+} from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+
 import ReactMarkdown from "react-markdown";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import RestoreIcon from "@material-ui/icons/Code";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import Report from "@material-ui/icons/ReportProblem";
-import PropTypes from "prop-types";
+import ReportIcon from "@material-ui/icons/ReportProblem";
+import CopyIcon from "@material-ui/icons/ContentCopy";
 
+import PropTypes from "prop-types";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
+const styles = theme => ({
+  typography: {
+    margin: theme.spacing.unit * 2
+  }
+});
 class Snippet extends Component {
   state = {
     value: 0,
@@ -15,7 +32,8 @@ class Snippet extends Component {
     favored: false,
     heartColor: "grey",
     heartWidth: 168,
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
+    anchorEl: null
   };
 
   componentWillMount() {
@@ -49,17 +67,67 @@ class Snippet extends Component {
   handleChange = (event, value) => {
     this.setState({ value });
   };
+  handleClose = () => {
+    this.setState({
+      anchorEl: null
+    });
+  };
   render() {
     const { classes } = this.props;
     const { value } = this.state;
+
+    console.log();
     return (
       <Card className="Snippet">
         <CardContent>
+          <CopyToClipboard
+            style={{
+              float: "right"
+            }}
+            text={this.props.snippet.contents.substring(
+              this.props.snippet.contents.lastIndexOf("```c#") + 5,
+              this.props.snippet.contents.lastIndexOf("```")
+            )}
+            onCopy={null}
+          >
+            <div>
+              <CopyIcon
+                onClick={event => {
+                  this.setState({
+                    anchorEl: event.currentTarget
+                  });
+                }}
+              />
+              <Popover
+                open={Boolean(this.state.anchorEl)}
+                onClose={() => this.setState({ anchorEl: false })}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center"
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "center"
+                }}
+              >
+                <Typography
+                  className={classes.typography}
+                  style={{
+                    fontSize: "20px"
+                  }}
+                >
+                  Copied!
+                </Typography>
+              </Popover>
+            </div>
+          </CopyToClipboard>
+
           <ReactMarkdown
             className="markdown-body"
             source={this.props.snippet.contents}
           />
         </CardContent>
+
         <BottomNavigation
           value={value}
           onChange={this.handleChange}
@@ -88,7 +156,16 @@ class Snippet extends Component {
             }}
             icon={<FavoriteIcon />}
           />
-          <BottomNavigationAction label="Report Bug" icon={<Report />} />
+          <BottomNavigationAction
+            label="Report Bug"
+            onClick={() =>
+              window.open(
+                "https://github.com/AmirBraham/unity-snippets/issues/new",
+                "_blank"
+              )
+            }
+            icon={<ReportIcon />}
+          />
         </BottomNavigation>
       </Card>
     );
@@ -97,4 +174,4 @@ class Snippet extends Component {
 Snippet.propTypes = {
   classes: PropTypes.object.isRequired
 };
-export default Snippet;
+export default withStyles(styles)(Snippet);
