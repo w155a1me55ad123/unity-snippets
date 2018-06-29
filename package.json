@@ -17,7 +17,8 @@
   "author": "Amir Braham",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "node-persist": "^3.0.1"
   },
   "devDependencies": {
     "concurrently": "^3.5.1"
